@@ -10,6 +10,7 @@ import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { FilterPipe } from './filter.pipe';
 import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-encontrada.component';
+import { SkinDetailsComponent } from './skin-details/skin-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-en
     BusquedaComponent,
     AcercaComponent,
     PaginaNoEncontradaComponent,
-    FilterPipe
+    FilterPipe,
+    SkinDetailsComponent
   ],
   imports: [
     BrowserModule,

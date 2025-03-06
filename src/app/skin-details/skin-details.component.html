@@ -1,0 +1,31 @@
+<div *ngIf="skin" class="container mt-4">
+  <div class="text-center">
+    <h2 class="fw-bold">{{ skin.displayName }}</h2>
+    <img [src]="skin.displayIcon" alt="{{ skin.displayName }}" class="img-fluid shadow-lg rounded my-3">
+  </div>
+
+  <div class="text-center mb-4">
+    <a routerLink="/acerca" class="btn btn-outline-primary">
+      <i class="bi bi-arrow-left"></i> Volver a Acerca
+    </a>
+  </div>
+
+  <h3 class="text-center mt-4">Variantes de Color</h3>
+  
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let chroma of chromas">
+      <div class="card h-100 shadow-sm border-0">
+        <img *ngIf="chroma.displayIcon" [src]="chroma.displayIcon" class="card-img-top rounded" [alt]="chroma.displayName">
+        <div class="card-body text-center">
+          <h5 class="card-title fw-semibold">{{ chroma.displayName }}</h5>
+          <div *ngIf="chroma.streamedVideo" class="ratio ratio-16x9 mt-2">
+            <video controls class="rounded">
+              <source [src]="chroma.streamedVideo" type="video/mp4">
+              Tu navegador no soporta videos.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

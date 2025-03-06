@@ -22,12 +22,9 @@
             *ngIf="weapon.displayIcon" 
             alt="{{ weapon.displayName }}">
           <div class="card-body text-center">
-            <p class="card-text"><strong>Tipo:</strong> {{ weapon.category | slice:6 }}</p>
-          </div>
-          <div class="card-footer bg-light text-center">
-            <button class="btn btn-outline-primary btn-sm">
-              Ver detalles
-            </button>
+            <p class="card-text">Categoría: {{ weapon.category }}</p>
+            <p *ngIf="weapon.shopData">Costo: {{ weapon.shopData?.cost }} créditos</p>
+            <p *ngIf="weapon.weaponStats">Cadencia de fuego: {{ weapon.weaponStats?.fireRate }}</p>
           </div>
         </div>
       </div>

@@ -1,1 +1,25 @@
-<p>acerca works!</p>
+<div class="container mt-4">
+    <h2 class="text-center">Explora las Skins de las Armas</h2>
+    
+    <div class="d-flex flex-wrap justify-content-center mb-3">
+      <button *ngFor="let weapon of weapons" class="btn btn-primary m-2" (click)="loadSkins(weapon)">
+        {{ weapon.displayName }}
+      </button>
+    </div>
+  
+    <div *ngIf="selectedWeapon">
+      <h3 class="text-center">Skins para {{ selectedWeapon.displayName }}</h3>
+      <div class="row">
+        <div class="col-md-4 mb-3" *ngFor="let skin of skins">
+          <div class="card h-100 shadow">
+            <img [src]="skin.displayIcon" class="card-img-top p-3" [alt]="skin.displayName">
+            <div class="card-body text-center">
+              <h5 class="card-title">{{ skin.displayName }}</h5>
+              <a [routerLink]="['/skin', skin.uuid]" class="btn btn-secondary">Ver Variantes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
