@@ -1,1 +1,36 @@
-<p>busqueda works!</p>
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">Armas de Valorant</h2>
+  
+    <!-- Input de búsqueda con icono -->
+    <div class="input-group mb-4 w-50 mx-auto">
+      <span class="input-group-text">
+        <i class="bi bi-search"></i>
+      </span>
+      <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Buscar arma...">
+    </div>
+  
+    <!-- Grid de tarjetas -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div class="col" *ngFor="let weapon of weapons | filter: searchTerm">
+        <div class="card shadow-sm border-0">
+          <div class="card-header text-center bg-primary text-white">
+            <h5 class="mb-0">{{ weapon.displayName }}</h5>
+          </div>
+          <img 
+            [src]="weapon.displayIcon" 
+            class="card-img-top p-3" 
+            *ngIf="weapon.displayIcon" 
+            alt="{{ weapon.displayName }}">
+          <div class="card-body text-center">
+            <p class="card-text"><strong>Tipo:</strong> {{ weapon.category | slice:6 }}</p>
+          </div>
+          <div class="card-footer bg-light text-center">
+            <button class="btn btn-outline-primary btn-sm">
+              Ver detalles
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

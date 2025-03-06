@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { provideHttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AcercaComponent } from './acerca/acerca.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { FilterPipe } from './filter.pipe';
 import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-encontrada.component';
 
 @NgModule({
@@ -15,11 +17,13 @@ import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-en
     BienvenidaComponent,
     BusquedaComponent,
     AcercaComponent,
-    PaginaNoEncontradaComponent
+    PaginaNoEncontradaComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent]
