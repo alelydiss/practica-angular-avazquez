@@ -17,7 +17,7 @@ export class ValorantService {
 
   getSkinsByWeapon(weaponUuid: string): Observable<ISkin[]> {
   return this.http.get<{ data: { skins: ISkin[] } }>(`https://valorant-api.com/v1/weapons/${weaponUuid}`)
-    .pipe(map(response => response.data.skins));
+    .pipe(map(response => response.data.skins))
 }
 
 getSkinById(skinId: string): Observable<ISkin> {
