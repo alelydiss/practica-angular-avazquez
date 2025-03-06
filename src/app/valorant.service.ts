@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { IWeapon } from './i-weapon';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +10,7 @@ export class ValorantService {
 
   constructor(private http: HttpClient) {}
 
-  getWeapons(): Observable<IWeapon[]> {
-    return this.http.get<any>(this.apiUrl).pipe(
-      map(response => response.data)
-    );
+  getWeapons(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
   }
 }

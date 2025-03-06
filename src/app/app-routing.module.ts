@@ -3,14 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AcercaComponent } from './acerca/acerca.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
-import { DetalleComponent } from './detalle/detalle.component';
 import { PaginaNoEncontradaComponent } from './pagina-no-encontrada/pagina-no-encontrada.component';
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent },
   { path: 'busqueda', component: BusquedaComponent },
   { path: 'acerca', component: AcercaComponent },
-  { path: 'detalle/:id', component: DetalleComponent },
   { path: '**', component: PaginaNoEncontradaComponent }
 ];
 
