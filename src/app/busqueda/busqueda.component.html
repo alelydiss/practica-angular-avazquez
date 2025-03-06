@@ -25,9 +25,9 @@
             <p class="card-text"><strong>Tipo:</strong> {{ weapon.category | slice:6 }}</p>
           </div>
           <div class="card-footer bg-light text-center">
-            <button class="btn btn-outline-primary btn-sm">
-              Ver detalles
-            </button>
+            <a [routerLink]="['/detalles', weapon.uuid]" class="btn btn-outline-primary btn-sm">
+                Ver detalles
+              </a>
           </div>
         </div>
       </div>

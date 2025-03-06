@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { IWeapon } from '../i-weapon';
 import { ValorantService } from '../valorant.service';
 
 @Component({
@@ -7,15 +8,15 @@ import { ValorantService } from '../valorant.service';
   templateUrl: './busqueda.component.html',
   styleUrl: './busqueda.component.css'
 })
-export class BusquedaComponent {
-  weapons: any[] = [];
+export class BusquedaComponent implements OnInit {
+  weapons: IWeapon[] = [];
   searchTerm: string = '';
 
   constructor(private valorantService: ValorantService) { }
 
   ngOnInit(): void {
-    this.valorantService.getWeapons().subscribe(data => {
-      this.weapons = data.data;
+    this.valorantService.getWeapons().subscribe(weapons => {
+      this.weapons = weapons;
     });
   }
 }
