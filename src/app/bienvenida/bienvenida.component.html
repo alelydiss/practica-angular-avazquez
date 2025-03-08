@@ -1,77 +1,61 @@
+
 <div class="container mt-5">
-    <!-- Título y Descripción -->
-    <div class="text-center">
-      <h1 class="fw-bold text-danger">Bienvenido a Valorant Hub</h1>
-      <p class="lead text-muted">
-        Explora el universo de Valorant: descubre agentes, armas y las skins más impresionantes.
-      </p>
-    </div>
-  
-    <!-- Carrusel de Agentes -->
-    <div id="agentCarousel" class="carousel slide mt-4 shadow-lg" data-bs-ride="carousel">
-      <div class="carousel-inner rounded">
-        <div class="carousel-item active">
-          <img src="assets/agents/jett.jpg" class="d-block w-100" alt="Jett">
-          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-2 rounded">
-            <h5>Jett</h5>
-            <p>La duelista ágil y letal con cuchillas precisas.</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="assets/agents/phoenix.jpg" class="d-block w-100" alt="Phoenix">
-          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-2 rounded">
-            <h5>Phoenix</h5>
-            <p>El maestro del fuego que siempre vuelve a la vida.</p>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="assets/agents/sage.jpg" class="d-block w-100" alt="Sage">
-          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-2 rounded">
-            <h5>Sage</h5>
-            <p>La sanadora estratégica que mantiene vivo al equipo.</p>
-          </div>
+  <div class="text-center">
+    <h1 class="fw-bold text-danger">🌟 Bienvenido a Valorant Hub 🌟</h1>
+    <p class="lead text-muted">
+      Explora los agentes, descubre sus habilidades y elige a tu favorito.
+    </p>
+  </div>
+
+  <div class="text-center my-4">
+    <button class="btn btn-outline-danger me-2" (click)="filterAgents('')">Todos</button>
+    <button class="btn btn-outline-primary me-2" (click)="filterAgents('Duelist')">Duelista</button>
+    <button class="btn btn-outline-success me-2" (click)="filterAgents('Initiator')">Iniciador</button>
+    <button class="btn btn-outline-warning me-2" (click)="filterAgents('Sentinel')">Centinela</button>
+    <button class="btn btn-outline-info" (click)="filterAgents('Controller')">Controlador</button>
+  </div>
+
+  <div id="agentCarousel" class="carousel slide mt-4 shadow-lg" data-bs-ride="carousel">
+    <div class="carousel-inner rounded">
+      <div *ngFor="let agent of agents; let i = index" class="carousel-item" [ngClass]="{ 'active': i === 0 }">
+        <img [src]="agent.fullPortrait" class="d-block w-100 agent-img" [alt]="agent.displayName">
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 p-2 rounded">
+          <h5>{{ agent.displayName }}</h5>
+          <p>{{ agent.description }}</p>
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#agentCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#agentCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      </button>
     </div>
-  
-    <!-- Sección de Noticias -->
-    <div class="mt-5">
-      <h2 class="text-center">📰 Últimas Noticias de Valorant</h2>
-      <div class="row mt-3">
-        <div class="col-md-4">
-          <div class="card h-100 shadow">
-            <img src="assets/news/valorant-update.jpg" class="card-img-top" alt="Nueva actualización">
-            <div class="card-body">
-              <h5 class="card-title">Nueva actualización 8.03</h5>
-              <p class="card-text">Descubre los cambios en los agentes y balance de armas.</p>
-            </div>
-          </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#agentCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#agentCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-4 mb-4" *ngFor="let agent of filteredAgents">
+      <div class="card shadow-lg agent-card">
+        <div class="agent-image rounded-top" [style.background]="getAgentGradient(agent)">
+          <img [src]="agent.displayIcon" class="card-img-top p-3" [alt]="agent.displayName">
         </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow">
-            <img src="assets/news/new-agent.jpg" class="card-img-top" alt="Nuevo agente">
-            <div class="card-body">
-              <h5 class="card-title">Nuevo Agente Revelado</h5>
-              <p class="card-text">Conoce al nuevo agente que cambiará el meta del juego.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow">
-            <img src="assets/news/tournament.jpg" class="card-img-top" alt="Torneo internacional">
-            <div class="card-body">
-              <h5 class="card-title">Torneo Internacional</h5>
-              <p class="card-text">Los mejores equipos del mundo compiten en el Masters.</p>
+        <div class="card-body text-center">
+          <h4 class="card-title text-danger">{{ agent.displayName }}</h4>
+          <span class="badge bg-primary mb-2">{{ agent.role?.displayName }}</span>
+          <p class="card-text text-muted">{{ agent.description }}</p>
+
+          <div class="abilities mt-3">
+            <h6 class="text-muted">Habilidades:</h6>
+            <div class="d-flex justify-content-center gap-2 flex-wrap">
+              <div *ngFor="let ability of agent.abilities" class="text-center ability-container">
+                <img *ngIf="ability.displayIcon" [src]="ability.displayIcon" class="ability-icon border p-1 bg-dark rounded"
+                     [alt]="ability.displayName">
+                <small class="d-block text-muted mt-1">{{ ability.displayName }}</small>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
